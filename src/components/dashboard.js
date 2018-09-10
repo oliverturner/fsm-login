@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Auth } from "./app";
+import { AuthContext } from "./app";
 
 const Dashboard = () => {
   return (
-    <Auth.Consumer>
+    <AuthContext.Consumer>
       {({ user, logout }) => {
         return (
           <div>
@@ -13,7 +13,7 @@ const Dashboard = () => {
           </div>
         );
       }}
-    </Auth.Consumer>
+    </AuthContext.Consumer>
   );
 };
 

@@ -5,7 +5,7 @@ import { appMachine } from "./states";
 import Login from "../login";
 import Dashboard from "../dashboard";
 
-export const Auth = React.createContext();
+export const AuthContext = React.createContext();
 
 class App extends React.Component {
   constructor() {
@@ -13,7 +13,8 @@ class App extends React.Component {
 
     this.state = {
       logout: this.logout,
-      error: ""
+      error: "",
+      user: {}
     };
   }
 
@@ -22,11 +23,11 @@ class App extends React.Component {
     this.props.transition("LOGOUT");
   };
 
-  loggedInEnter({ user }) {
-    if (user)
+  loggedInEnter(event) {
+    if (event && event.user)
       this.setState({
         error: "",
-        user: { name: user }
+        user: { name: event.user }
       });
   }
 
@@ -42,27 +43,22 @@ class App extends React.Component {
     this.setState({ isLoading: false });
   }
 
-  onError = ({ error }) => {
-    if (error) this.setState({ error });
+  onError = event => {
+    if (event && event.error) this.setState({ error: event.error });
   };
 
   render() {
-    console.log(this.props.machineState);
-    console.log(this.state)
-
     return (
-      <Auth.Provider value={this.state}>
-        <div>
-          <State is="loggedIn">
-            <Dashboard />
-          </State>
-          <State is={["loggedOut", "loading", "error"]}>
-            <Login transition={this.props.transition} />
-          </State>
-        </div>
-      </Auth.Provider>
+      <AuthContext.Provider value={this.state}>
+        <State is="loggedIn">
+          <Dashboard />
+        </State>
+        <State is={["loggedOut", "loading", "error"]}>
+          <Login transition={this.props.transition} />
+        </State>
+      </AuthContext.Provider>
     );
   }
 }
 
-export default withStateMachine(appMachine)(App);
+export default withStateMachine(appMachine, { devTools: true })(App);

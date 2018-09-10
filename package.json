@@ -1,6 +1,6 @@
 {
-  "name": "login",
-  "version": "0.1.0",
+  "name": "fsm-login",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "react": "^16.5.0",

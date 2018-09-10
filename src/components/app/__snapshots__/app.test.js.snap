@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`error 1`] = `
+<form
+  className="login-form"
+  onSubmit={[Function]}
+>
+  <h2>
+    Log in to your account
+  </h2>
+  <label
+    htmlFor="user"
+  />
+  <input
+    className=""
+    id="user"
+    onChange={[Function]}
+    placeholder="Username"
+    type="text"
+    value=""
+  />
+  <button
+    disabled={false}
+  >
+    Login
+  </button>
+</form>
+`;
+
+exports[`loading 1`] = `
+<form
+  className="login-form"
+  onSubmit={[Function]}
+>
+  <h2>
+    Log in to your account
+  </h2>
+  <label
+    htmlFor="user"
+  />
+  <input
+    className=""
+    id="user"
+    onChange={[Function]}
+    placeholder="Username"
+    type="text"
+    value=""
+  />
+  <button
+    disabled={true}
+  >
+    Logging in...
+  </button>
+</form>
+`;
+
+exports[`loggedIn 1`] = `
+<div>
+  <h1>
+    Hello 
+  </h1>
+  <button
+    onClick={[Function]}
+  >
+    Logout
+  </button>
+</div>
+`;
+
+exports[`loggedOut 1`] = `
+<form
+  className="login-form"
+  onSubmit={[Function]}
+>
+  <h2>
+    Log in to your account
+  </h2>
+  <label
+    htmlFor="user"
+  />
+  <input
+    className=""
+    id="user"
+    onChange={[Function]}
+    placeholder="Username"
+    type="text"
+    value=""
+  />
+  <button
+    disabled={undefined}
+  >
+    Login
+  </button>
+</form>
+`;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Auth } from "./app";
+import { AuthContext } from "./app";
 
 class Login extends React.Component {
   state = {
@@ -15,7 +15,7 @@ class Login extends React.Component {
 
   formReset = () => {
     console.log("this.formReset");
-    
+
     this.setState({ userName: "" });
   };
 
@@ -39,7 +39,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <Auth.Consumer>
+      <AuthContext.Consumer>
         {({ isLoading, error }) => {
           const label = isLoading ? "Logging in..." : "Login";
           const errorClass = error ? "error" : "";
@@ -47,7 +47,7 @@ class Login extends React.Component {
           return (
             <form className="login-form" onSubmit={this.onSubmit}>
               <h2>Log in to your account</h2>
-              <p className="error-message">{error}</p>
+              {error.length > 0 && <p className="error-message">{error}</p>}
               <label htmlFor="user" />
               <input
                 className={errorClass}
@@ -61,7 +61,7 @@ class Login extends React.Component {
             </form>
           );
         }}
-      </Auth.Consumer>
+      </AuthContext.Consumer>
     );
   }
 }
