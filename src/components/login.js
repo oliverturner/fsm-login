@@ -14,6 +14,8 @@ class Login extends React.Component {
   };
 
   formReset = () => {
+    console.log("this.formReset");
+    
     this.setState({ userName: "" });
   };
 
@@ -22,24 +24,23 @@ class Login extends React.Component {
 
     const { transition } = this.props;
 
-    transition({ type: "SUBMIT" });
+    transition("SUBMIT");
 
     setTimeout(() => {
       const { user } = this.state;
 
       if (user.length) {
-        return transition({ type: "SUCCESS", user }, this.formReset);
+        return transition("SUCCESS", { user }, this.formReset);
       }
 
-      return transition({ type: "FAILURE", error: "You must supply a name" });
+      return transition("FAILURE", { error: "You must supply a name" });
     }, 2000);
   };
 
   render() {
     return (
       <Auth.Consumer>
-        {({ authState, error }) => {
-          const isLoading = authState === "loading";
+        {({ isLoading, error }) => {
           const label = isLoading ? "Logging in..." : "Login";
           const errorClass = error ? "error" : "";
 

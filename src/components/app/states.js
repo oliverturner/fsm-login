@@ -4,22 +4,29 @@ export const appMachine = Machine({
   initial: "loggedOut",
   states: {
     loggedOut: {
-      onEntry: ["error"],
       on: {
         SUBMIT: "loading"
       }
     },
     loading: {
+      onEntry: ["loadingEnter"],
+      onExit: ["loadingExit"],
       on: {
         SUCCESS: "loggedIn",
-        FAILURE: "loggedOut"
+        FAILURE: "error"
       }
     },
     loggedIn: {
-      onEntry: ["setUser"],
-      onExit: ["unsetUser"],
+      onEntry: ["loggedInEnter"],
+      onExit: ["loggedInExit"],
       on: {
         LOGOUT: "loggedOut"
+      }
+    },
+    error: {
+      onEntry: ["onError"],
+      on: {
+        SUBMIT: "loading"
       }
     }
   }
